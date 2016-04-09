@@ -1,0 +1,83 @@
+body {     
+	font-family: "Segoe UI",Verdana,Helvetica,Sans-Serif;
+	font-size: 16px;
+    position: relative;
+    z-index: 0;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    background: #fff;}
+
+.header { margin: 0;
+    padding: 10px;
+    background-color: #3a5795;
+    color: #fefefe;
+    border-bottom: 1px solid #334D84;}
+
+.menu {     margin: 0;
+    padding: 8px;
+    position: relative;
+    background-color: #5274BC;
+    color: #fefefe;
+    border-top: 1px solid #7791CA;
+    border-bottom: 1px solid #666699;
+    overflow: hidden;
+    font: 16px/20px Arial,Helvetica,sans-serif;
+    color: #FFF;}
+.menu a { padding:2px 4px; margin:0 5px; text-decoration: none; display: inline-block; text-align: center; cursor: pointer; border:1px solid #3a5795; background-color: #FFF; color:#3a5795;}
+.menu a:hover {background-color: #3a5795; color:#FFF;}
+.menu a.current {background-color: #3a5795; color:#FFF;}
+
+/* headers */
+h2 { color: #fff; background-color: #00506b; padding: 4px 8px;}
+
+div {}
+li {margin: 2px 0 0 0;}
+
+.content { padding: 20px;}
+.articlebody {}
+
+/* картинки */
+/* кликабельная картинка - <a href="../Content/Images/pr8051_1_s1.jpg" target="_blank"><img class="img_sheme" src="../Content/Images/pr8051_1_s1.jpg"/></a> - кликабельная картинка */
+.img_sheme { width: 300px; /*height: 300px;*/}
+
+
+/* подсветка */
+.span_rpi {display: inline-block;border: 1px solid #1B6B00; color:#1B6B00; padding: 0 4px;vertical-align: bottom; -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;background-color: #fafafa;}
+.span_device {display: inline-block;border: 1px solid #850063; color:#850063; padding: 0 4px;vertical-align: bottom; -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;background-color: #fafafa;}
+.span_file {display: inline-block;border: 1px solid #e0e0e0;color:#000;padding: 0 4px;vertical-align: bottom; -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;background-color: #fafafa;}
+.span_text_hi { font-weight: bold;}
+.span_volt {display: inline-block;border: 1px solid #FF5CAD;color:#FF5CAD;padding: 0 4px;vertical-align: bottom; -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;background-color: #fafafa;}
+.span_data {display: inline-block;border: 1px solid #e0e0e0;color:#000;padding: 0 4px;vertical-align: bottom; -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;background-color: #fafafa;}
+.span_pin {display: inline-block;border: 1px solid #003DF5;color:#003DF5;padding: 0 4px;vertical-align: bottom; -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;background-color: #fafafa;}
+.span_lng { font-weight: bold;display: inline-block;border: 2px dotted #005470;color: #005470;padding: 0 6px;vertical-align: bottom; -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;background-color: #fafafa;}
+.span_prog {display: inline-block;border: 2px dotted #A37A00;color:#705400;padding: 0 4px;vertical-align: bottom; -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;background-color: #fafafa;}
+
+/* таблица распиновки */
+.table_pins {width: 200px; border-collapse: collapse;}
+.table_pins  th {    padding: 8px; border: 1px solid #aaa;    background-color: #f1f1f1;}
+.table_pins tbody {}
+.table_pins tbody td {padding: 8px; border: 1px solid #bbb; text-align:center;}
+/* таблица распиновки (горизонтальная) */
+.table_pins2 {width: 200px; border-collapse: collapse; border:2px solid #666;}
+.table_pins2 tbody {}
+.table_pins2 tbody tr{}
+.table_pins2 tbody tr td:first-child {padding: 8px; border: 1px solid #aaa;    background-color: #f1f1f1; font-weight: bold; min-width:100px;}
+.table_pins2 tbody tr td {padding: 8px; border: 1px solid #bbb; text-align:center;}
+
+/* документация */
+.datashit { padding: 10px 30px;border: 1px solid #666;display: inline-block;background-color: #E5F9FF;}
+.datashit p {margin:0;}
+.datashit .ds_title {padding: 8px;font-weight: bold; min-width:100px;color: #007399;}
+.datashit .ds_body {}
+.datashit .ds_body .ds_body_line { overflow: hidden;    margin: 0 0 10px 0;}
+.datashit .ds_body .ds_body_line .ds_body_num {display: inline-block;float: left; margin: 0 10px 0 5px;font-weight: bold;color: #007399;min-width: 30px;  text-align: right;}
+.datashit .ds_body .ds_body_content {overflow: hidden;}
+
+/* видео youtube */
+.ytvw { text-align: left;}
+.ytvw .ytv {text-align: left; margin: 0 !important;}
+
+/* вставки кода */
+.code_simple {}
+textarea.txt_code {width: 90%; height: 300px;color: #00779E;font-size: 12px;font-family: Segoe UI; background-color: #fefefe; border: 1px solid #ccc;  outline: none; padding: 10px 0 0 0;  resize: none;}

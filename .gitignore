@@ -1,0 +1,14 @@
+bin/
+tmp/
+src/*~
+*~
+__pycache__/
+__pycache__/*
+
+
+fastman2.uvgui.*
+*.uvgui.*
+*/fastman2.uvgui.*
+*/*.uvgui.*
+src_mk/fastman2/fastman2.uvgui.*
+src_mk/fastman2/fastman2.uvgui.kotenko_kg
