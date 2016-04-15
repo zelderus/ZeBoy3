@@ -6,65 +6,58 @@
  */ 
 
 
+//# warning "LCD c"
+
+#include <avr/io.h>
+#include "../common.h"
+#include "lcd.h"
 
 
- #include <avr/io.h>
- #include "common.h"
- #include "lcd.h"
+
+#ifndef DBG_PROTEUS
+# warning "DBG_PROTEUS is setted"
+#define _LCD_INPROT 1
+#else
+//#define _LCD_INPROT 0
+#endif
 
 
 
- #define __PORTDATADIR	DDRA
- #define __PORTDATA		PORTA
 
- #define __PORTCMDDIR	DDRC
- #define __PORTCMD		PORTC
+
+#define __PORTDATADIR	DDRA
+#define __PORTDATA		PORTA
+
+#define __PORTCMDDIR	DDRC
+#define __PORTCMD		PORTC
 
 
  
- //#define LCD_E_on 			__PORTCMD=SetBit(__PORTCMD,0)
- //#define LCD_RES_on 		__PORTCMD=SetBit(__PORTCMD,4)
- //#define LCD_CS_on 			__PORTCMD=SetBit(__PORTCMD,3)
- //#define LCD_RW_on 			__PORTCMD=SetBit(__PORTCMD,1)
- //#define LCD_E_off 			__PORTCMD=ClrBit(__PORTCMD,0)
- //#define LCD_RES_off 		__PORTCMD=ClrBit(__PORTCMD,4)
- //#define LCD_CS_off 		__PORTCMD=ClrBit(__PORTCMD,3)
- //#define LCD_RW_off 		__PORTCMD=ClrBit(__PORTCMD,1)
 
-  #define LCD_E_on 			__PORTCMD|=(1<<0)
-  #define LCD_RES_on 		__PORTCMD|=(1<<4)
-  #define LCD_CS_on 		__PORTCMD|=(1<<3)
-  #define LCD_RW_on 		__PORTCMD|=(1<<1)
+#define LCD_E_on 			__PORTCMD|=(1<<0)
+#define LCD_RES_on 		__PORTCMD|=(1<<4)
+#define LCD_CS_on 		__PORTCMD|=(1<<3)
+#define LCD_RW_on 		__PORTCMD|=(1<<1)
+#define LCD_E_off 		__PORTCMD&=~(1<<0)
+#define LCD_RES_off 		__PORTCMD&=~(1<<4)
+#define LCD_CS_off 		__PORTCMD&=~(1<<3)
+#define LCD_RW_off 		__PORTCMD&=~(1<<1)
 
-  #define LCD_E_off 		__PORTCMD&=~(1<<0)
-  #define LCD_RES_off 		__PORTCMD&=~(1<<4)
-  #define LCD_CS_off 		__PORTCMD&=~(1<<3)
-  #define LCD_RW_off 		__PORTCMD&=~(1<<1)
-
-
-
-
-
-
- void LCD_A0(int b)
- {
-	 //MutBit(__PORTCMD,5,b);
-	 if(b>=1)(__PORTCMD|=(1<<5));
-	 else (__PORTCMD&=~(1<<5));
- }
- void LCD_CS(int b)
- {
-	 //MutBit(__PORTCMD,3,b);
-	 if(b>=1)(__PORTCMD|=(1<<3));
-	 else (__PORTCMD&=~(1<<3));
- }
-
- void LCD_SetD(int b)
- {
-	 //PutByte(__PORTA,b);
-	 __PORTDATA = b;
- }
- //#define LCD_GetD() 				GetByte(__PORTA)
+void LCD_A0(int b)
+{
+	if(b>=1)(__PORTCMD|=(1<<5));
+	else (__PORTCMD&=~(1<<5));
+}
+void LCD_CS(int b)
+{
+	if(b>=1)(__PORTCMD|=(1<<3));
+	else (__PORTCMD&=~(1<<3));
+}
+void LCD_SetD(int b)
+{
+	__PORTDATA = b;
+}
+//#define LCD_GetD() 				GetByte(__PORTA)
 
 
 
@@ -74,7 +67,7 @@
 
 
  //Процедура программной инициализации индикатора
- void LCDinit(BOOL fromProt)
+ void LCDinit()
  {
 	__PORTDATADIR = 0xFF; // out
 	__PORTCMDDIR = 0xFF; // out
@@ -95,12 +88,18 @@
 	 WriteCodeR(0xA9);//Мультиплекс 1/32
 	 WriteCodeL(0xC0);//Верхнюю строку на 0
 	 WriteCodeR(0xC0);//Верхнюю строку на 0
+
 	 WriteCodeL(0xA1);//Invert scan RAM
 	 //NonInvert scan RAM
-	 if (fromProt == FALSE)
-	 WriteCodeR(0xA0);
-	 else
+	 //if (fromProt == FALSE)
+	 //WriteCodeR(0xA0);
+	 //else
+	 //WriteCodeR(0xA1);
+	 #ifdef _LCD_INPROT
 	 WriteCodeR(0xA1);
+	 #else
+	 WriteCodeR(0xA0);
+	 #endif
 	 
 	 
 	 //Display on
@@ -154,6 +153,8 @@
  }
 
 
+
+
  void LCDdraw(BYTE video[][122]){
 	 
 	 int	p = 0;
@@ -174,7 +175,9 @@
 		 WriteCodeR(p|0xB8);//Установка текущей страницы для правого кристалла индикатора
 		 WriteCodeR(0x00);//Установка текущего адреса для записи данных в левую отображаемую позицию правой половины индикатора
 		 for(c=61; c<122; c++) {//Цикл вывода данных в правую половину индикатора
+			 #ifndef _LCD_INPROT
 			 WriteDataR(video[p][c]);
+			 #endif
 		 }
 	 }
 	 
@@ -188,8 +191,8 @@
 	 int	c = 0;
 	 
 	 // reset LCD addr
-	 //WriteCodeL(0xE2);
-	 //WriteCodeR(0xE2);
+	 WriteCodeL(0xE2);
+	 WriteCodeR(0xE2);
 	 
 	 for(p=0; p<4; p++) {//Цикл по всем 4-м страницам индикатора
 		 WriteCodeL(0xE2); // reset

@@ -1,6 +1,8 @@
 /*
  * lcd.h
  *
+ *	Драйвер дисплея
+ *	
  * Created: 15.04.2016 10:45:46
  *  Author: kotenko_kg
  */ 
@@ -9,9 +11,11 @@
 #ifndef LCD_H_
 #define LCD_H_
 
+//# warning "LCD H"
 
 
-void LCDinit(BOOL fromProt);
+
+void LCDinit();
 void LCDclear();
 void LCDdraw(BYTE video[][122]);
 void LCDdrawLeftOnly(BYTE video[][122]);
