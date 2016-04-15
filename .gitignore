@@ -6,9 +6,8 @@ __pycache__/
 __pycache__/*
 
 
-fastman2.uvgui.*
-*.uvgui.*
-*/fastman2.uvgui.*
-*/*.uvgui.*
-src_mk/fastman2/fastman2.uvgui.*
-src_mk/fastman2/fastman2.uvgui.kotenko_kg
+src_zeos/.vs/
+src_zeos/.vs/*
+src_zeos/at1284/at1284.componentinfo.xml
+src_zeos/at1284/Debug/
+src_zeos/at1284/Debug/*
